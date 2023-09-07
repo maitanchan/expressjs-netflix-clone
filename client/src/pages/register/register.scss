@@ -1,0 +1,93 @@
+.register {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 100%
+      ),
+      url("https://assets.nflxext.com/ffe/siteui/vlv3/51e53f54-0d9f-40ec-9e05-c030def06ac9/59fd5bf8-0338-47a5-abb2-c78d169fcd8f/VN-en-20230515-popsignuptwoweeks-perspective_alpha_website_large.jpg");
+    background-size: cover;
+    position: relative;
+  
+    .top {
+      .wrapper {
+        padding: 20px 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+  
+        .logo {
+          height: 40px;
+        }
+  
+        .loginButton {
+          background-color: rgb(213, 1, 1);
+          border: none;
+          color: white;
+          border-radius: 5px;
+          padding: 5px 15px;
+          font-size: 16px;
+          font-weight: 500;
+          cursor: pointer;
+        }
+      }
+    }
+  
+    .container {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+  
+      h1 {
+        font-size: 50px;
+      }
+  
+      h2 {
+        margin: 20px;
+      }
+  
+      p {
+        font-size: 20px;
+      }
+  
+      .input {
+        width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+        height: 50px;
+        border-radius: 5px;
+  
+        input{
+            flex: 9;
+            height: 100%;
+            border: none;
+            padding: 0 10px;
+            color: aliceblue;
+            background-color: rgba(40, 40, 40, 0.899);
+            border: 0.1px solid #ffff;
+            border-radius: 2px;
+        }
+  
+        .registerButton{
+            flex: 3;
+            height: 100%;
+            background-color: rgb(213, 1, 1);
+            border: none;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+      }
+    }
+  }
