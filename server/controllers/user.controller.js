@@ -18,17 +18,7 @@ export const updateUser = async (req, res, next) => {
 
         }
 
-        const updatedUser = await userModel.findByIdAndUpdate(
-
-            req.params.userId,
-            {
-                $set: req.body,
-            },
-            {
-                new: true,
-            },
-
-        )
+        const updatedUser = await userModel.findByIdAndUpdate(req.params.userId, { $set: req.body }, { new: true })
 
         const { password, ...others } = updatedUser._doc
 
@@ -116,30 +106,27 @@ export const getUserStats = async (req, res, next) => {
 
     try {
 
-        const data = await userModel.aggregate([
-
-            {
-                $project: {
-
-                    month: {
-                        $month: "$createdAt",
-                    },
+        const data = await userModel.aggregate(
+            [
+                {
+                    $project:
+                    {
+                        month:
+                            { $month: "$createdAt" }
+                    }
                 },
-
-            },
-
-            {
-                $group: {
-
-                    _id: "$month",
-                    total: {
-                        $sum: 1
-                    },
-
-                },
-            },
-
-        ])
+                {
+                    $group:
+                    {
+                        _id: "$month",
+                        total:
+                        {
+                            $sum: 1
+                        }
+                    }
+                }
+            ]
+        )
 
         res.status(200).json(data)
 

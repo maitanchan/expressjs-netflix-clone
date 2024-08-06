@@ -39,6 +39,7 @@ export const deleteList = async (req, res, next) => {
 export const getLists = async (req, res, next) => {
 
     const typeQuery = req.query.type
+
     const genreQuery = req.query.genre
 
     let list
@@ -49,54 +50,17 @@ export const getLists = async (req, res, next) => {
 
             if (genreQuery) {
 
-                list = await listModel.aggregate([
-
-                    {
-                        $match: {
-                            type: typeQuery,
-                            genre: genreQuery
-                        },
-                    },
-
-                    {
-                        $sample: {
-                            size: 10
-                        },
-                    }
-
-                ])
+                list = await listModel.aggregate([{ $match: { type: typeQuery, genre: genreQuery } }, { $sample: { size: 10 } }])
 
             } else {
 
-                list = await listModel.aggregate([
-
-                    {
-                        $match: {
-                            type: typeQuery
-                        },
-                    },
-
-                    {
-                        $sample: {
-                            size: 10
-                        }
-                    }
-
-                ])
+                list = await listModel.aggregate([{ $match: { type: typeQuery } }, { $sample: { size: 10 } }])
 
             }
 
         } else {
 
-            list = await listModel.aggregate([
-
-                {
-                    $sample: {
-                        size: 10
-                    }
-                }
-
-            ])
+            list = await listModel.aggregate([{ $sample: { size: 10 } }])
 
         }
 

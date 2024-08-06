@@ -5,7 +5,6 @@ export const addMovie = async (req, res, next) => {
 
     if (req.user.isAdmin) {
 
-
         try {
 
             const newMovie = new movieModel(req.body)
@@ -19,7 +18,6 @@ export const addMovie = async (req, res, next) => {
             next(err)
 
         }
-
 
     } else {
 
@@ -35,15 +33,7 @@ export const updateMoive = async (req, res, next) => {
 
         try {
 
-            const updatedMovie = await movieModel.findByIdAndUpdate(
-
-                req.params.movieId,
-                {
-                    $set: req.body,
-                },
-                { new: true }
-
-            )
+            const updatedMovie = await movieModel.findByIdAndUpdate(req.params.movieId, { $set: req.body, }, { new: true })
 
             res.status(200).json(updatedMovie)
 
@@ -135,40 +125,11 @@ export const getRandomMovie = async (req, res, next) => {
 
         if (type === "series") {
 
-            movie = await movieModel.aggregate([
-
-                {
-                    $match: {
-                        isSeries: true
-                    },
-
-                },
-
-                {
-                    $sample: {
-                        size: 1
-                    },
-                },
-
-            ])
+            movie = await movieModel.aggregate([{ $match: { isSeries: true } }, { $sample: { size: 1 } }])
 
         } else {
 
-            movie = await movieModel.aggregate([
-
-                {
-                    $match: {
-                        isSeries: false
-                    },
-                },
-
-                {
-                    $sample: {
-                        size: 1
-                    }
-                }
-
-            ])
+            movie = await movieModel.aggregate([{ $match: { isSeries: false } }, { $sample: { size: 1 } }])
 
         }
 
